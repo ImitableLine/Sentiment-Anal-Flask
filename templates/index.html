@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment140 Student Keras Model</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="header">Sentiment140 Student Keras Model</div>
+    <div class="container">
+        <form id="twitterForm">
+            <input type="text" id="twitterLinkInput" name="twitter_link" placeholder="Enter Comment to analyze">
+            <button type="button" class="action-button" id="getDataButton">Get Predictions</button>
+        </form>
+        <div id="twitterData" class="data-box">Response is displayed here</div>
+    </div>
+    <div class="footer">
+        This is a student project and not fit for commercial use.
+    </div>
+    
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
