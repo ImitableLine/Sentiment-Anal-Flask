@@ -8,7 +8,7 @@ import pickle
 app = Flask(__name__)
 
 # Load the Keras model
-model = tf.keras.models.load_model("models/sentiment_modelALPHA.h5")
+model = tf.keras.models.load_model("models/sentiment_modelBETA.h5")
 
 
 @app.route('/')
