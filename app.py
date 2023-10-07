@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 import tensorflow as tf
+print("TensorFlow version:", tf.__version__)
 import numpy as np
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -7,7 +8,7 @@ import pickle
 app = Flask(__name__)
 
 # Load the Keras model
-model = tf.keras.models.load_model("models/sentiment_modelBETA.h5")
+model = tf.keras.models.load_model("models/sentiment_modelALPHA.h5")
 
 
 @app.route('/')
