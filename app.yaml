@@ -1,4 +1,4 @@
-runtime: python39  # Use the appropriate Python runtime version
+runtime: python311  # Use the appropriate Python runtime version
 
 entrypoint: gunicorn -b :$PORT app:app  # Replace "app" with your Flask app's variable name
 
