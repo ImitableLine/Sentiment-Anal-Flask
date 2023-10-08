@@ -13,11 +13,17 @@
             <button type="button" class="action-button" id="getDataButton">Get Predictions</button>
         </form>
         <div id="twitterData" class="data-box">Response is displayed here</div>
+        
+        <!-- Add a new input box for entering a video URL -->
+        <form id="youtubeForm">
+            <input type="text" id="videoUrlInput" name="video_url" placeholder="Enter Video URL">
+            <button type="button" class="action-button" id="predictOnURLButton">Predict on URL</button>
+        </form>
+        <div id="youtubeData" class="data-box">Predictions for YouTube comments will appear here</div>
     </div>
     <div class="footer">
         This is a student project and not fit for commercial use.
     </div>
-    
 
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
