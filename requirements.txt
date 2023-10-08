@@ -1,4 +1,4 @@
 Flask==3.0.0
 numpy==1.22
 tensorflow==2.13.0
-
+gunicorn=21.2.0
