@@ -17,7 +17,7 @@ $(document).ready(function () {
                     if (response && response.predictions && Array.isArray(response.predictions)) {
                         // Process the predictions here
                         var predictions = response.predictions;
-                        var resultHtml = "<h3>Predictions for Twitter comments:</h3>";
+                        var resultHtml = "<h3>Predictions for Entered comment:</h3>";
     
                         for (var i = 0; i < predictions.length; i++) {
                             resultHtml += '<div class="comment-box">';
@@ -42,14 +42,20 @@ $(document).ready(function () {
     });
     // Handle the "Predict on URL" button click
     $('#predictOnURLButton').click(function () {
+        // Get the YouTube API key entered by the user
+        var apiKey = $('#youtubeApiKeyInput').val();
+    
         // Get the video URL entered by the user
         var videoUrl = $('#videoUrlInput').val();
-
+    
         // Make an AJAX request to your Flask server to trigger YouTube comment collection and prediction
         $.ajax({
             url: '/predict_youtube',
             type: 'POST',
-            data: { video_url: videoUrl },
+            data: {
+                video_url: videoUrl,
+                youtube_api_key: apiKey  // Pass the API key to the server
+            },
             success: function (response) {
                 try {
                     // Verify that response.predictions exists and is an array
@@ -57,7 +63,7 @@ $(document).ready(function () {
                         // Process the predictions here
                         var predictions = response.predictions;
                         var resultHtml = "<h3>Predictions for YouTube comments:</h3>";
-
+    
                         for (var i = 0; i < predictions.length; i++) {
                             resultHtml += '<div class="comment-box">';
                             resultHtml += '<p>' + predictions[i].comment + '</p>';
@@ -65,7 +71,7 @@ $(document).ready(function () {
                             resultHtml += '<p>Confidence: ' + predictions[i].confidence.toFixed(4) + '</p>'; // Format confidence
                             resultHtml += '</div>';
                         }
-
+    
                         $('#youtubeData').html(resultHtml); // Display predictions in the "youtubeData" div
                     } else {
                         console.error('Invalid response data:', response);

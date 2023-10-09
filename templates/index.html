@@ -6,7 +6,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="header">Sentiment140 Student Keras Model</div>
+    <div class="header">Sentiment Analysis Keras Model</div>
     <div class="container">
         <form id="twitterForm">
             <input type="text" id="twitterLinkInput" name="twitter_link" placeholder="Enter Comment to analyze">
@@ -17,6 +17,7 @@
         <!-- Add a new input box for entering a video URL -->
         <form id="youtubeForm">
             <input type="text" id="videoUrlInput" name="video_url" placeholder="Enter Video URL">
+            <input type="text" id="youtubeApiKeyInput" name="youtube_api_key" placeholder="Enter YouTube API Key">
             <button type="button" class="action-button" id="predictOnURLButton">Predict on URL</button>
         </form>
         <div id="youtubeData" class="data-box">Predictions for YouTube comments will appear here</div>

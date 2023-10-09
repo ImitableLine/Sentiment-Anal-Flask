@@ -6,6 +6,10 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
 from youtubeapi import get_video_comments 
+
+import os
+import googleapiclient.discovery
+
 app = Flask(__name__)
 
 # Load the Keras model
@@ -69,14 +73,22 @@ def extract_video_id(url):
 @app.route('/predict_youtube', methods=['POST'])
 def predict_youtube():
     if request.method == 'POST':
-        # Get video URL from the form
+        # Get video URL and YouTube API key from the form
         video_url = request.form['video_url']
+        youtube_api_key = request.form['youtube_api_key']
 
         # Extract video ID from the URL
         video_id = extract_video_id(video_url)
 
+        # Use the user-entered API key for the YouTube API call
+        API_KEY = youtube_api_key
+
+        # Initialize the YouTube Data API client
+        youtube = googleapiclient.discovery.build('youtube', 'v3', developerKey=API_KEY)
+
         # Get comments from the video
-        comments = get_video_comments(video_id, max_results=3)
+        comments = get_video_comments(video_id, max_results=3, api_key=youtube_api_key)
+
 
         # Perform sentiment analysis on the comments
         sentiments = []
@@ -105,7 +117,6 @@ def predict_youtube():
         }
 
         return jsonify(response)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
